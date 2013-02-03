@@ -1,0 +1,334 @@
+<!--
+rroongaを使ったソースコード検索エンジン Milkode
+
+Authors: ongaeshi
+
+URL: http://milkode.ongaeshi.me/slide/milkode-rroonga
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>rroongaを使ったソースコード検索エンジン Milkode</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/milkode_logo.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <!-- <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside> -->
+    <aside><img src="images/MilkodeIcon135.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>自己紹介</h2>
+    </hgroup>
+
+    <article>
+      <p><img src='images/ongaeshi.jpg' /></p>
+
+      <p style="font-size: 50px">ongaeshi (おんがえし)</p>
+      <ul>
+        <li>職業プログラマです
+        <li>趣味でソフトウェアを作って公開しています
+        <li>ホームページ : <a href="http://ongaeshi.me">http://ongaeshi.me</a>
+      </ul>
+
+      <h3>最近作ったもの</h3>
+      <ul>
+        <li>QiitaMail
+        <li>FireLink
+        <li>auto-shell-commend
+      </ul>
+    </article>
+  </slide>
+  
+  <slide>
+    <hgroup>
+      <h2>アジェンダ</h2>
+    </hgroup>
+    <article>
+      <ul style="font-size: 50px">
+        <li>Milkodeの紹介
+        <li>何故rroongaを使ったの？
+        <li>rroongaの使い方
+      </ul>
+    </article>
+  </slide>
+  
+  <slide class="segue dark nobackground">
+    <!-- <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside> -->
+    <hgroup class="auto-fadein">
+      <h2>Milkodeの紹介</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>何なの?</h2>
+    </hgroup>
+    
+    <article>
+      <p>
+        <img style='height: 400px' src='images/milkode_demo.jpg'>
+      </p>
+      <ul>
+        <li>ソースコード検索に特化した検索エンジン
+        <li>ローカルやWeb上にあるソースコードを登録して高速に検索
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>特徴は？</h2>
+    </hgroup>
+    
+    <article>
+      <ul class="build">
+        <li>高速 (20,000ファイル位であれば1秒以内に検索)
+        <li>行指向 (AND検索)
+        <li>エディタでもブラウザでも
+      </ul>
+      <div class="build">
+        <p class="red build-end">もっとコードリーディングを簡単に！</p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ソフトウェアの構成</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Ruby & Haml & JavaScript
+        <li>rroonga (ストレージ & 検索エンジン)
+        <li>Thor    (コマンドライン)
+        <li>Sinatra (Webアプリ)
+        <li>CodeRay (ソースコードの色付け)
+      </ul>
+      
+      <p>他にもたくさんのgemのおかげで出来てます</p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>デモ</h2>
+    </hgroup>
+    <article>
+      <p>
+        <img style='height: 400px' src='images/milkode_screenshot_00.jpg'>
+      </p>
+      <ul>
+        <li>Rails の ActiveSupport#blank? を探す
+        <li>Macintosh HD 内の全テキストから検索
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <hgroup class="auto-fadein">
+      <h2>何故rroongaを使ったの？</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>groongaがカラムストア機能付きだから！</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>別途データベースソフトのインストールが不要
+        <li>'gem install rroonga' でgroongaもまとめてインストール
+      </ul>
+      <div class="build">
+        <p class="red" style="font-size: 50px">配布が簡単</p>
+        <p>このような特性を持つため・・</p>
+        <p class="red" style="font-size: 50px">ローカルアプリと相性がよい</p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>さらに・・</h2>
+    </hgroup>
+    <article>
+      <h3>Rubyだけで書ける</h3>
+      <ul>
+        <li>C言語を使わずにgroongaにアクセス
+        <li>Rubyらしく読み書きしやすいAPI
+        <li>ブロックで検索式を記述
+      </ul>
+      <h3>サポート</h3>
+      <ul>
+        <li>日本語の情報が豊富
+        <li>開発が活発
+        <li>MLのレスポンスが早い
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <!-- <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside> -->
+    <hgroup class="auto-fadein">
+      <h2>rroongaの使い方</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>基本的な使い方</h2>
+    </hgroup>
+    <article>
+      <h3>Groonga::Database</h3>
+      <ul>
+        <li>ソースコードのテーブル (documents)
+        <li>パッケージのテーブル (packages)
+          <ul>
+            <li>milkode, .emacs.d, rroonga-2.0.6 等
+          </ul>
+      </ul>
+      <h3>呼び出し方法</h3>
+      <ul>
+        <li>コマンドラインからの入力を解析→データベースに問い合わせ→標準出力
+        <li>Webアプリの入力を解析→データベースに問い合わせ→HTML
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>ソースコードのテーブル(documents)</h2>
+    </hgroup>
+    <article>
+      <table>
+        <tr><th>カラム名</th><th>型</th><th>説明</th><th>実例</th><th>全文検索</th></tr>
+        <tr><td>path</td><td>string</td><td>ファイルの絶対パス</td><td>/path/to/proj/src/aaa.txt</td><td>○</td></tr>
+        <tr><td>package</td><td>string</td><td>パッケージ名</td><td>proj</td><td>○</td></tr>
+        <tr><td>restpath</td><td>string</td><td>パッケージ名以降のパス</td><td>src/aaa.txt</td><td>○</td></tr>
+        <tr><td>content</td><td>text</td><td>ファイルの内容</td><td>aaa\nbbb\nccc</td><td>○</td></tr>
+        <tr><td>timestamp</td><td>time</td><td>ファイルのタイムスタンプ</td><td>2012-11-21 23:26:00 +0900</td><td>-</td></tr>
+        <tr><td>suffix</td><td>text</td><td>拡張子</td><td>txt</td><td>○</td></tr>
+      </table>
+
+      <p/>
+
+      <ul>
+        <li>1ファイル == 1レコード としてテーブルに登録
+        <li>拡張子はソースコード検索にとって重要なので専用カラムを作成
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>パッケージのテーブル(packages)</h2>
+    </hgroup>
+
+    <article>
+      <table>
+        <tr><th>カラム名</th><th>型</th><th>説明</th><th>実例</th></tr>
+        <tr><td>name</td><td>string</td><td>パッケージ名</td><td>proj</td></tr>
+        <tr><td>directory</td><td>string</td><td>パッケージの実体パス</td><td>/path/to/proj</td></tr>
+        <tr><td>addtime</td><td>time</td><td>追加時刻</td><td></td></tr>
+        <tr><td>updatetime</td><td>time</td><td>更新時刻</td><td></td></tr>
+        <tr><td>viewtime</td><td>time</td><td>最終閲覧時刻</td><td></td></tr>
+        <tr><td>favtime</td><td>time</td><td>お気に入りに設定した時刻</td><td></td></tr>
+      </table>
+
+      <p/>
+
+      <ul>
+        <li>ホームやパッケージ一覧に使用
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>どうやって&nbsp;&nbsp;行&nbsp;&nbsp;を絞り込むの?</h2>
+    </hgroup>
+    <article>
+      <div class="build"> 
+        <h3>1. rroongaで可能性のあるレコードを絞り込み</h3>
+        <h3>2. 絞り込んだレコードを1行ずつRubyで検索</h3>
+        <h3>3. 目的の1行を見つけ出す</h3>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>トークナイザーの設定</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li><b>TokenBigramSplitSymbolAlphaDigit</b>を使用
+        <ul>
+          <li>コード検索の場合は、'robo123'に'robo'や'123'でマッチした方がよい
+        </ul>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/ongaeshi.jpg"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>ありがとうございました</h2>
+      <p>是非Milkodeに触れてみてください</br>
+        どうぞよろしくお願い致します</p>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
