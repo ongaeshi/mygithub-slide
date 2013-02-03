@@ -1,7 +1,7 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'rroongaを使ったソースコード検索エンジン Milkode',
+    title: 'MyGithub - Find yourself in the Github code faster',
     // subtitle: 'コンソールアプリにも便利',
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
